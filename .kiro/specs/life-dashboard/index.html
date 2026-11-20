@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Life Dashboard untuk mengatur fokus, tugas harian, dan tautan penting.">
+    <meta name="theme-color" content="#f4f7ff">
+    <title>Life Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="#" aria-label="Life Dashboard beranda">
+                <span class="brand-mark" aria-hidden="true">L</span>
+                <span>Life<span class="brand-accent">Dashboard</span></span>
+            </a>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
+                <span class="theme-icon" aria-hidden="true">☾</span>
+                <span id="themeLabel">Dark mode</span>
+            </button>
+        </header>
+
+        <main>
+            <section class="welcome-panel panel" aria-labelledby="greetingText">
+                <div class="welcome-copy">
+                    <p class="eyebrow">YOUR DAILY SPACE</p>
+                    <h1 id="greetingText">Selamat datang!</h1>
+                    <p class="welcome-description">Atur harimu, jaga fokusmu, dan selesaikan satu hal pada satu waktu.</p>
+                    <form id="nameForm" class="name-form">
+                        <label class="sr-only" for="userName">Nama kamu</label>
+                        <input id="userName" name="userName" type="text" maxlength="40" placeholder="Masukkan nama kamu" autocomplete="given-name">
+                        <button class="button button-light" type="submit">Simpan nama</button>
+                    </form>
+                </div>
+                <div class="clock-card" aria-live="off">
+                    <p class="clock-label">HARI INI</p>
+                    <p id="currentDate" class="date-text">Memuat tanggal...</p>
+                    <p id="currentTime" class="time-text">--:--:--</p>
+                    <p class="timezone-label">Waktu Indonesia Barat (WIB)</p>
+                </div>
+            </section>
+
+            <div class="dashboard-grid">
+                <section class="panel timer-panel" aria-labelledby="timerHeading">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">STAY FOCUSED</p>
+                            <h2 id="timerHeading">Focus Timer</h2>
+                        </div>
+                        <span class="section-icon" aria-hidden="true">◷</span>
+                    </div>
+                    <p class="section-description">Sesi fokus selama 25 menit. Mulai, jeda, atau atur ulang waktumu.</p>
+                    <div class="timer-display" id="timer" role="timer" aria-live="off">25:00</div>
+                    <p class="timer-status" id="timerStatus" aria-live="polite">Siap untuk fokus?</p>
+                    <div class="timer-actions">
+                        <button class="button button-primary" id="startTimer" type="button">Mulai</button>
+                        <button class="button button-secondary" id="stopTimer" type="button">Jeda</button>
+                        <button class="button button-ghost" id="resetTimer" type="button">Atur ulang</button>
+                    </div>
+                </section>
+
+                <section class="panel todo-panel" aria-labelledby="todoHeading">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">MAKE IT HAPPEN</p>
+                            <h2 id="todoHeading">To-Do List</h2>
+                        </div>
+                        <span class="section-icon" aria-hidden="true">✓</span>
+                    </div>
+                    <p class="section-description">Catat tugasmu dan tandai saat sudah selesai.</p>
+                    <form id="taskForm" class="input-row">
+                        <label class="sr-only" for="taskInput">Tugas baru</label>
+                        <input id="taskInput" name="task" type="text" maxlength="120" placeholder="Apa yang ingin kamu kerjakan?" required>
+                        <button class="button button-primary" id="addTask" type="submit">Tambah</button>
+                    </form>
+                    <div class="list-meta">
+                        <span id="taskSummary">0 tugas</span>
+                        <span class="small-hint">Tugas tersimpan otomatis</span>
+                    </div>
+                    <ul id="taskList" class="task-list" aria-live="polite">
+                        <li class="empty-state">Belum ada tugas. Tambahkan tugas pertamamu!</li>
+                    </ul>
+                </section>
+
+                <section class="panel links-panel" aria-labelledby="linksHeading">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">YOUR SHORTCUTS</p>
+                            <h2 id="linksHeading">Quick Links</h2>
+                        </div>
+                        <span class="section-icon" aria-hidden="true">↗</span>
+                    </div>
+                    <p class="section-description">Simpan tautan yang sering kamu buka agar mudah ditemukan.</p>
+                    <form id="linkForm" class="link-form">
+                        <div class="field-group">
+                            <label for="linkName">Nama tautan</label>
+                            <input id="linkName" name="linkName" type="text" maxlength="50" placeholder="Contoh: Google Classroom" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="linkUrl">Alamat URL</label>
+                            <input id="linkUrl" name="linkUrl" type="url" maxlength="500" placeholder="https://example.com" required>
+                        </div>
+                        <button class="button button-primary add-link-button" id="addLink" type="submit">Tambah tautan</button>
+                    </form>
+                    <ul id="linkList" class="link-list" aria-live="polite">
+                        <li class="empty-state">Belum ada tautan tersimpan.</li>
+                    </ul>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Life Dashboard <span aria-hidden="true">•</span> Small steps, meaningful progress.</p>
+        </footer>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+</body>
+</html>
